@@ -2,7 +2,14 @@
 close all
 clc
 clear
-Mapa = ones(1000,1000);
+
+mapabmp = '../contents/mapa.png';
+A = imread(mapabmp);
+A = A(:,:,1);
+A = A./(max(max(A)));
+A1 = A;
+A = A;
+Mapa = ones(100,100);
 
 Mapa(:,1) = 0;
 
@@ -19,9 +26,9 @@ for j=1:ny
       end
     end
 end
-Mapa
-
+%Mapa
 A = zeros(cont - 1, cont -1);
+
 for j=1:ny
     for i =1:nx
       if Mapa(j,i) != 0
@@ -47,13 +54,11 @@ for j=1:ny
 end
 
 %incluir destino
-
 idc = 35;
 A(idc, :) = 0;
 A(idc, idc) = 1;
 d = zeros(length(A),1);
 d(idc) = -1;
-
 %sistema linear de equacoes a resolver  - > A*u=d
 
 u = A\d;
@@ -67,12 +72,16 @@ for j=1:ny
       end
     end
 end
-figure(1)
-[Mx, My] = meshgrid(Mapa(:,)
-surf(Mx,My, Mapa)
+
+%figure(1)
+%[Mx, My] = meshgrid(1:length(Mapa))
+%surf(Mx,My, Mapa)
+%figure(2)
 [dx, dy] = gradiente(Mapa);
+%%parte de normalização dos vetores do gradiente
 modulo = sqrt(dx.^2 + dy.^2);
 dxn = - dx./modulo;
 dyn = - dy./modulo;
 
-quiver(1:size(Mapa, 2), 1:size(Mapa,1), dxn, dyn, 0.5);
+%% fazer plot do campo vetoria
+quiver(1:size(Mapa, 2), 1:size(Mapa,1), dxn, dyn, 0.5); 
