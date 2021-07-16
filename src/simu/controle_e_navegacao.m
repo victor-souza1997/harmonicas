@@ -81,22 +81,26 @@ global u;
 % !!!!!! - você pode manipular essas variáveis como quiser. Alguns exemplos de
 % manipulações úteis aparecem abaixo.
 
+%% chama o planejador 
+
+if i == 1
+  dirichlet
+  
+end
+load plano
+
+if i == 2
+  plot(vxr*10, vyr*10, 'r', 'LineWidth', 2);
+  quiver(10*(1:100), 10*(1:100), dxn, dyn);
+end
+
+
 %% Distância até o destino (d)
 
-k11 = 1;
-
-[~, pos_close] = sort((sum((u'-Pos(1:2)).^2)));
-plot(u(pos_close(1),1), u(pos_close(1),2), 'or')
-%waitforbuttonpress()
-
-if(pos_close(1) - 1 >= 1),Pdes_new = u(pos_close(1)-1,:);
-else, Pdes_new = Pdes; k11 = 0.2; end
-
-
-d = sqrt((Pdes_new(1)-Pos(1))^2 + (Pdes_new(2)-Pos(2))^2); %distância até o destino
+d = sqrt((Pdes(1)-Pos(1))^2 + (Pdes(2)-Pos(2))^2); %distância até o destino
 
 %% Cálculo do erro de orientação para o destino (theta_e)
-theta_d = atan2((Pdes_new(2)-Pos(2)),(Pdes_new(1)-Pos(1))); % ângulo de destino de -pi a pi
+theta_d = theta_des( round(Pos(2)*0.1),round(Pos(1)*0.1)); % ângulo de destino de -pi a pi
 theta_e = theta_d - Pos(3);
 
 % converte theta_e para -pi a pi
@@ -115,9 +119,9 @@ if theta_e_obs > pi, theta_e_obs = theta_e_obs - 2*pi; end
 if theta_e_obs < -pi, theta_e_obs = theta_e_obs + 2*pi; end
 
 
-k1 = 1;
+k1 = 0.5;
 k2 = 1.2;
-V = k1*d*k11;
+V = k1*d*cos(theta_e);
 W = k2*theta_e;
 
 plot(Pos(1), Pos(2), '.r')

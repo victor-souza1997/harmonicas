@@ -330,7 +330,6 @@ while  (((abs(dist) > 5) || (abs(Vmedido) > 5) || abs(Wmedido) > 0.1) && (colidi
         p2 = plot([Pos(1) Pos(1)+18.5*cos(Pos(3))],[Pos(2) Pos(2)+18.5*sin(Pos(3))],'r');
         axis equal;
         p3 = plot(s2(1,:),s2(2,:),'.','MarkerEdgeColor','k','MarkerSize',7);
-        p4 = plot(u(:,1), u(:,2), 'm');
         % plota o destino no ambiente de navegação
         plot(Pdes(1),Pdes(2),'.','MarkerEdgeColor','r','MarkerSize',20)
         set(gca,'xtick',[],'ytick',[])        
