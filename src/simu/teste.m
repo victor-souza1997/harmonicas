@@ -11,7 +11,8 @@ A = A;
 
 Mapa = ones(6,6);
 Mapa(1:2,1:2) = 0;
-escalonar(Mapa, 0.5);
+
+Mapa2 = escalonar(Mapa, 0.5)
 
 
 ##dim = size(Mapa)*0.5
