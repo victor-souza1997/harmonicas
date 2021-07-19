@@ -8,7 +8,7 @@ se = strel('ball', 25, 25);
 Amapa = imerode(Amapa, se);
 
 %redicionamento do mapa para escalonar
-Amapa = imresize(Amapa, 0.1);
+Amapa = escalonar(Amapa, 0.01);%%funcao que tem a mesma funcao de imresize%imresize(Amapa, 0.1);
 
 %fechar o ambiente virtualmente para o planejamento
 
@@ -29,7 +29,7 @@ end
 x_i = Pos(1)*0.1; %unidade no planejamento
 y_i = Pos(2)*0.1;
 x_f = Pdes(1)*0.1;
-y_f = Pos(2)*0.1;
+y_f = Pdes(2)*0.1;
 
 %numero de estados no automato
 nestados = length(Ay);
