@@ -6,7 +6,7 @@ configuracao_experimento
 configuracao_robo
 
 global u;
-mapabmp = '../../contents/mapas/aula2.bmp';
+mapabmp = '../../contents/mapas/aula3.bmp';
 
 
 tipodeplot = 3; % em terceira pessoa = 3 --- em primeira pessoa = 1  ---- sem plot = 0

@@ -1,14 +1,16 @@
-global Pdes Pos Mapa2
+global Pdes Pos Mapa2 ind_esc
 pkg load image
 Amapa = Mapa2;
 
 %inflar obstaculos para aumentar a seguraca e evitar coliscao
 
-se = strel('ball', 25, 25);
+se = strel('ball', 20, 20);
 Amapa = imerode(Amapa, se);
 
 %redicionamento do mapa para escalonar
-Amapa = escalonar(Amapa, 0.01);%%funcao que tem a mesma funcao de imresize%imresize(Amapa, 0.1);
+
+ind_esc = 0.1;
+Amapa = escalonar(Amapa, 0.1*ind_esc);%imresize(Amapa, ind_esc);%escalonar(Amapa, ind_esc*0.1);%%funcao que tem a mesma funcao de imresize%
 
 %fechar o ambiente virtualmente para o planejamento
 
@@ -26,10 +28,10 @@ for j = 1:length(Oy)
 	Amapa(Oy(j), Ox(j)) = 0; %potencial nos obstaculos
 end
 
-x_i = Pos(1)*0.1; %unidade no planejamento
-y_i = Pos(2)*0.1;
-x_f = Pdes(1)*0.1;
-y_f = Pdes(2)*0.1;
+x_i = Pos(1)*ind_esc; %unidade no planejamento
+y_i = Pos(2)*ind_esc;
+x_f = Pdes(1)*ind_esc;
+y_f = Pdes(2)*ind_esc;
 
 %numero de estados no automato
 nestados = length(Ay);
@@ -94,7 +96,6 @@ axis equal
 for j = 1%:length(x_i)
 	%buscando o melhor caminho do gradiente 
 	t = 0.05;
-  j
 	xround = round(x_i(j))
 	yround = round(y_i(j))
 	xr = x_i(j);

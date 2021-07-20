@@ -1,7 +1,7 @@
 % Parâmetros de configuração das características do robô.
 
 robo.ruido = 5; %desvio padrão do ruído do sensor
-robo.saturacao = 200; %limite do alcance sensorial em cm
+robo.saturacao = 10;%200; %limite do alcance sensorial em cm
 
 robo.vmax =   100; % velocidade linear máxima cm/s (limitada a 100)
 robo.acVp =   200; % aceleração linear (valor fixo positivo) positiva cm/s2 (limitada a 200)

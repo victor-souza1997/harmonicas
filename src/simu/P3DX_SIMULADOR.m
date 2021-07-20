@@ -42,7 +42,7 @@ Mapa = [Ax,Ay]';
 
 
 % inicialização da posição de destino do robô
-Pdes =  [500,600];%[experimento.dx ; experimento.dy ];%[800, 100]; [100,900];%
+Pdes =  [800,800];%[experimento.dx ; experimento.dy ];%[800, 100]; [100,900];%
 
 
 

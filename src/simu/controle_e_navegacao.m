@@ -19,7 +19,7 @@ function [V,W] = controle_e_navegacao()
 
 %% VARIÁVEIS DISPONÍVEIS (SOMENTE LEITURA!!! NÂO ALTERAR!!!)
 global Pos Pdes v_sensor s s2 angs Mapa Mapa2 i Vmax Wmax tempo tamos;
-global u;
+global u ind_esc;
 % ATENÇÃO: UTILIZE AS VARIÁVEIS GLOBAIS SOMENTE PARA LEITURA!!!
 % ATENÇÃO: UTILIZE AS VARIÁVEIS GLOBAIS SOMENTE PARA LEITURA!!!
 % ATENÇÃO: UTILIZE AS VARIÁVEIS GLOBAIS SOMENTE PARA LEITURA!!!
@@ -90,8 +90,8 @@ end
 load plano
 
 if i == 2
-  plot(vxr*10, vyr*10, 'r', 'LineWidth', 2);
-  quiver(10*(1:100), 10*(1:100), dxn, dyn);
+  plot(vxr*1/ind_esc, vyr*1/ind_esc, 'r', 'LineWidth', 2);
+  quiver(1/ind_esc*(1:1000*ind_esc), 1/ind_esc*(1:1000*ind_esc), dxn, dyn);
 end
 
 
@@ -100,7 +100,7 @@ end
 d = sqrt((Pdes(1)-Pos(1))^2 + (Pdes(2)-Pos(2))^2); %distância até o destino
 
 %% Cálculo do erro de orientação para o destino (theta_e)
-theta_d = theta_des( round(Pos(2)*0.1),round(Pos(1)*0.1)); % ângulo de destino de -pi a pi
+theta_d = theta_des( round(Pos(2)*ind_esc),round(Pos(1)*ind_esc)); % ângulo de destino de -pi a pi
 theta_e = theta_d - Pos(3);
 
 % converte theta_e para -pi a pi
